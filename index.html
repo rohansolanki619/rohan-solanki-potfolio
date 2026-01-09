@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analyst Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: #2980b9;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        /* Education & Contact Form Styles */
+        .edu-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 62%;
+            display: block;
+            border-radius: 10px;
+        }
+
+        #profilePlaceholder {
+            background-color: #3498db;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 5rem;
+        }
+
+        .contact-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .contact-form h3 {
+            margin-top: 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        .contact-form .btn {
+            width: 100%;
+        }
+
+        footer .logo {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .logo i {
+            margin-right: 8px;
+        }
+
+        .btn-secondary {
+            background-color: #2980b9;
+            margin-left: 15px;
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        .cert-center {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .icon-gold {
+            color: #f39c12;
+        }
+
+        .icon-red {
+            color: #c0392b;
+        }
+
+        .icon-green {
+            color: #27ae60;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3498db;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #2980b9;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .logo span {
+            color: #3498db;
+        }
+
+        /* Desktop nav links (use class to avoid targeting other lists) */
+        nav .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 0;
+            align-items: center;
+        }
+
+        nav .nav-links li {
+            margin-left: 30px;
+        }
+
+        nav .nav-links li a {
+            color: white;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav .nav-links li a:hover {
+            color: #3498db;
+        }
+
+        nav .nav-links li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #3498db;
+            transition: width 0.3s;
+        }
+
+        nav .nav-links li a:hover::after {
+            width: 100%;
+        }
+            /* CSS-only mobile nav (checkbox + label) */
+            .nav-toggle {
+                display: none;
+            }
+
+            .nav-toggle-label {
+                display: none;
+                cursor: pointer;
+                width: 36px;
+                height: 28px;
+                position: relative;
+            }
+
+            /* Hide dropdown by default (only show on mobile when toggled) */
+            .nav-dropdown {
+                display: none;
+            }
+
+            .nav-toggle-label span {
+                display: block;
+                height: 3px;
+                background: white;
+                margin: 6px 0;
+                border-radius: 2px;
+                transition: transform 0.2s ease, opacity 0.2s ease;
+            }
+
+            /* When nav is toggled, rotate bars for a close icon */
+            .nav-toggle:checked + .nav-toggle-label span:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+            .nav-toggle:checked + .nav-toggle-label span:nth-child(2) {
+                opacity: 0;
+            }
+            .nav-toggle:checked + .nav-toggle-label span:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+            }
+
+            /* Mobile-specific overrides */
+            @media (max-width: 768px) {
+                .header-container {
+                    align-items: center;
+                }
+
+                /* show hamburger */
+                .nav-toggle {
+                    display: block;
+                    position: absolute;
+                    right: 20px;
+                    top: 18px;
+                    width: 36px;
+                    height: 28px;
+                    opacity: 0; /* hide native checkbox */
+                    z-index: 1100;
+                }
+
+                .nav-toggle-label {
+                    display: block;
+                    position: absolute;
+                    right: 20px;
+                    top: 14px;
+                    z-index: 1101;
+                }
+
+                /* hide original nav links (they will be shown via the checkbox) */
+                nav .nav-links {
+                    display: none;
+                }
+
+                /* dropdown that appears below the navbar, not full height */
+                .nav-dropdown {
+                    display: none;
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 100%;
+                    background: white;
+                    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+                    border-bottom-left-radius: 8px;
+                    border-bottom-right-radius: 8px;
+                    padding: 12px 20px;
+                    z-index: 1050;
+                }
+
+                /* when checkbox checked, show dropdown */
+                .nav-toggle:checked ~ nav .nav-dropdown {
+                    display: block;
+                }
+
+                .nav-dropdown ul {
+                    display: block;
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                .nav-dropdown ul li {
+                    margin: 10px 0;
+                }
+
+                .nav-dropdown ul li a {
+                    color: #2c3e50;
+                    font-weight: 600;
+                    display: block;
+                    padding: 8px 6px;
+                }
+
+                /* ensure hero sits below header (header not full height) */
+                header {
+                    position: sticky;
+                    top: 0;
+                }
+            }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 3.2rem;
+        }
+
+        .hero-content p {
+            color: #ecf0f1;
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* About Section */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-light {
+            background-color: white;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+        .profile-img {
+            flex: 0 0 320px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: 420px; /* show head down to upper torso */
+            max-width: 320px;
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* crop to fill area */
+            object-position: center 62%; /* shift image down to show more of torso */
+            display: block;
+            border-radius: 10px;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .skill-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-img {
+            height: 200px;
+            background-color: #3498db;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background-color: #ecf0f1;
+            color: #2c3e50;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: flex;
+            gap: 50px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            background-color: #3498db;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #3498db;
+        }
+
+        .copyright {
+            margin-top: 20px;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .profile-img {
+                flex: 0 0 280px;
+                height: 320px;
+                max-width: 320px;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            /* center desktop nav links when stacked in narrow desktop/tablet widths */
+            nav .nav-links {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            nav .nav-links li {
+                margin: 0 10px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+            .profile-img {
+                flex: 0 0 220px;
+                height: 260px;
+                max-width: 100%;
+            }
+            
+            nav .nav-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo"><i class="fas fa-user-circle"></i>Rohan K Solanki</div>
+
+            <!-- CSS-only toggle -->
+            <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
+            <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <nav class="nav">
+                <!-- desktop links -->
+                <ul class="nav-links">
+                    <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+                    <li><a href="#education"><i class="fas fa-graduation-cap"></i> Education</a></li>
+                    <li><a href="#skills"><i class="fas fa-tools"></i> Skills</a></li>
+                    <li><a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                    <li><a href="#certificates"><i class="fas fa-certificate"></i> Certificates</a></li>
+                    <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+
+                <!-- mobile dropdown (shown when checkbox is checked) -->
+                <div class="nav-dropdown">
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#education">Education</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#certificates">Certificates</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>Transforming Data into Actionable Insights</h1>
+            <p>Aspiring Data Analyst skilled in Python, SQL, Power BI, and Excel. I transform raw data into clear, actionable business insights through analysis and visualization.</p>
+            <a href="#projects" class="btn">View My Projects</a>
+            <a href="resume.pdf" target="_blank" rel="noopener" class="btn btn-secondary"><i class="fas fa-file-pdf"></i>View Resume</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section section-light">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hello! I'm Rohan K Solanki, a final-year student pursuing a B.Tech in Computer Science and Engineering at Parul University (2022–2026). I focus on data cleaning, exploratory data analysis, visualization, and building predictive models to drive business value.</p>
+                    <p>I've completed projects in customer churn analysis, sales performance reporting, and location-based restaurant analysis using tools such as Python, Power BI, and Excel. I publish projects on GitHub and use Git for version control.</p>
+                    <p>I'm passionate about transforming raw data into actionable insights that help organizations make informed decisions. My technical expertise spans statistical analysis, EDA, and interactive dashboard creation.</p>
+                    <p>Outside of data work I enjoy contributing to hackathons and expanding my skills in machine learning and data visualization.</p>
+                </div>
+                <div class="profile-img">
+                    <!-- Profile image: place the provided photo in the project as 'profile.jpg' -->
+                    <img id="profilePhoto" src="profile.jpg" alt="Rohan Solanki">
+                    <!-- Fallback placeholder shown when profile.jpg is not available -->
+                    <div id="profilePlaceholder">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <div class="container">
+            <h2>Education</h2>
+            <div class="edu-card">
+                <h3>Parul University</h3>
+                <p><strong>B.Tech, Computer Science and Engineering</strong> — Sep 2022 – June 2026</p>
+                <p>Vadodara, Gujarat</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Data Analysis</h3>
+                    <ul class="skill-list">
+                        <li>Data Cleaning & Preprocessing</li>
+                        <li>Exploratory Data Analysis (EDA)</li>
+                        <li>Customer Churn & Segmentation Analysis</li>
+                        <li>Predictive Modeling</li>
+                        <li>Statistical Analysis</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools & Technologies</h3>
+                    <ul class="skill-list">
+                        <li>Python (Pandas, NumPy, Scikit-learn)</li>
+                        <li>SQL</li>
+                        <li>Power BI</li>
+                        <li>Microsoft Excel (PivotTables, Advanced Formulas)</li>
+                        <li>Git</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Data Visualization</h3>
+                    <ul class="skill-list">
+                        <li>Interactive Dashboard Creation (Power BI, Excel)</li>
+                        <li>Chart & Graph Design Principles</li>
+                        <li>Storytelling with Data</li>
+                        <li>Visualization with Seaborn & Matplotlib</li>
+                        <li>Business Reporting Dashboards</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section section-light">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-user-slash"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Customer Churn Analysis</h3>
+                        <p>Analyzed telecom customer churn data using Excel by cleaning, sorting, and filtering data to identify churn patterns. Built pivot tables and visualizations to analyze churn by tenure, monthly charges, and gender. Derived actionable customer retention insights and published the project on GitHub.</p>
+                        <div class="project-tags">
+                            <span class="tag">Excel</span>
+                            <span class="tag">Git</span>
+                            <span class="tag">Churn Analysis</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Data Analysis — Cognifyz Technologies</h3>
+                        <p>Conducted exploratory analysis on restaurant data to examine geographic distribution, customer ratings, and brand presence across locations. Emphasized insight generation through structured analysis and visual interpretation.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">EDA</span>
+                            <span class="tag">Data Visualization</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Sales Performance & Operations Analysis</h3>
+                        <p>Performed end-to-end sales and operations analysis (2023–2025) to identify revenue drivers, profitability factors, discount impacts, and operational gaps. Designed interactive dashboards to visualize sales, profitability, segmentation, delivery performance, and returns trends.</p>
+                        <div class="project-tags">
+                            <span class="tag">Power BI</span>
+                            <span class="tag">Excel</span>
+                            <span class="tag">Sales Analytics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>COD-SOFT (Python)</h3>
+                        <p>Developed Python mini-projects applying programming fundamentals, including modular coding, loops, conditionals, and basic game logic to strengthen programming skills and problem solving.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Programming</span>
+                            <span class="tag">Learning</span>
+                        </div>
+                    </div>
+                </div>
+                    <div class="project-card">
+                        <div class="project-img">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3>Code-Genie | AI-Powered Coding Assistant</h3>
+                            <p>Implemented Code-Genie, an AI-powered coding assistant that simplifies software development through automated code generation, debugging, and refactoring. The application supports multiple programming languages and delivers intelligent suggestions to enhance code quality. Acted as Front-end & Documentation Lead in a 4-member collaborative team, handling UI implementation and preparing detailed project documentation.</p>
+                            <div class="project-tags">
+                                <span class="tag">React.js</span>
+                                <span class="tag">Tailwind CSS</span>
+                                <span class="tag">Node.js</span>
+                                <span class="tag">Express.js</span>
+                                <span class="tag">MongoDB</span>
+                                <span class="tag">Open-AI API</span>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates" class="section section-light">
+        <div class="container">
+            <h2>Certificates & Achievements</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-medal icon-gold"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>🥇 Accenture – Data Analytics & Visualization</h3>
+                        <p>Completed real-world data analytics tasks including data cleaning, modeling, and visualization. Gained hands-on experience in storytelling with data and presenting insights to stakeholders.</p>
+                        <div class="project-tags">
+                            <span class="tag">Data Analytics</span>
+                            <span class="tag">Visualization</span>
+                            <span class="tag">Accenture</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-certificate icon-red"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>🥈 Deloitte – Data Analytics Job Simulation</h3>
+                        <p>Worked on practical data analysis and forensic technology tasks through a job simulation, focusing on extracting insights, analyzing datasets, and solving business-oriented problems.</p>
+                        <div class="project-tags">
+                            <span class="tag">Data Analysis</span>
+                            <span class="tag">Job Simulation</span>
+                            <span class="tag">Deloitte</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-award icon-green"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>🥉 TATA – Data Visualisation: Empowering Business with Effective Insights</h3>
+                        <p>Learned to frame business scenarios, choose effective visualizations, and communicate insights clearly to support data-driven decision-making for business stakeholders.</p>
+                        <div class="project-tags">
+                            <span class="tag">Data Visualization</span>
+                            <span class="tag">Business Insights</span>
+                            <span class="tag">TATA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cert-center">
+                <a href="https://drive.google.com/drive/folders/169na3pGCR8vS6l94QmWwlwm-HXSAuohx?usp=sharing" target="_blank" rel="noopener" class="btn"><i class="fas fa-folder-open"></i>View All Certificates (Google Drive)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <p>I'm always interested in hearing about new opportunities, collaborations, or data challenges. Feel free to reach out if you'd like to discuss how data analytics can benefit your organization.</p>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <p>rohansolanki961@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+91-9220476836</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Location</h3>
+                            <p>Mira Road (E), Thane, Maharashtra, India</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo">Rohan<span>Solanki</span></div>
+            <div class="social-links">
+                <a href="https://linkedin.com/in/rohan-solanki961/" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/rohansolanki619" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+            <p class="copyright">© 2026 Rohan Solanki. All rights reserved.</p>
+        </div>
+    </footer>
+        <script>
+            // Show the profile image if it loads, otherwise keep the placeholder
+            (function(){
+                var img = document.getElementById('profilePhoto');
+                var ph = document.getElementById('profilePlaceholder');
+                if(!img) return;
+                img.style.display = 'none'; // start hidden
+                img.onload = function(){
+                    img.style.display = 'block';
+                    if(ph) ph.style.display = 'none';
+                };
+                img.onerror = function(){
+                    img.style.display = 'none';
+                    if(ph) ph.style.display = 'flex';
+                };
+                // Attempt to trigger load (for some browsers this is needed)
+                if(img.complete && img.naturalWidth){
+                    img.style.display = 'block';
+                    if(ph) ph.style.display = 'none';
+                }
+            })();
+        </script>
+</body>
+</html>
